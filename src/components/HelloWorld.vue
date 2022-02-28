@@ -4,12 +4,12 @@
     <input v-model.number="operand2" type="number">
     = {{ result }}
     <div class="calc">
-      <button v-on:click="result = operand1 + operand2">+</button>
-      <button v-on:click="result = operand1 - operand2">-</button>
-      <button v-on:click="result = operand1 / operand2">/</button>
-      <button v-on:click="result = operand1 * operand2">*</button>
-      <button v-on:click="result = operand1 % operand2">%</button>
-      <button v-on:click="result = operand1 ** operand2">**</button>
+      <button @click="result = operand1 + operand2">+</button>
+      <button @click="result = operand1 - operand2">-</button>
+      <button @click="divide(operand1, operand2)">/</button>
+      <button @click="multiplay()">*</button>
+      <button @click="result = operand1 % operand2">%</button>
+      <button @click="result = operand1 ** operand2">**</button>
     </div>
   </div>
 </template>
@@ -28,6 +28,15 @@ export default {
       operand1: 0,
       operand2: 0,
       result: 0
+    }
+  },
+  methods: {
+    divide(op1, op2) {
+      this.result = op1 / op2
+    },
+    multiplay(){
+      const {operand1, operand2} = this
+      this.result = operand1 * operand2
     }
   }
 }
