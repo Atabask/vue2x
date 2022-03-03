@@ -3,14 +3,21 @@
     <input v-model.number="operand1" type="number">
     <input v-model.number="operand2" type="number">
     = {{ result }}
+    <div>{{error}}</div>
     <div class="calc">
-      <button @click="result = operand1 + operand2">+</button>
-      <button @click="result = operand1 - operand2">-</button>
-      <button @click="divide(operand1, operand2)">/</button>
-      <button @click="multiplay()">*</button>
-      <button @click="result = operand1 % operand2">%</button>
-      <button @click="result = operand1 ** operand2">**</button>
+      <button @click="calculate('+')">+</button>
+      <button @click="calculate('-')">-</button>
+      <button @click="calculate('/')">/</button>
+      <button @click="calculate('*')">*</button>
+      <button @click="calculate('%')">%</button>
+      <button @click="calculate('**')">**</button>
     </div>
+    <input v-if="numKeyboard" type="checkbox" name="keyboard" id="numKeyboard">Отобразить Экранную клавиатуру 
+    <div class="nums">
+
+    </div>
+    <input type="radio" name="operandInput" id="">Операнд 1
+    <input type="radio" name="operandInput" id="">Операнд 2
   </div>
 </template>
 
@@ -27,16 +34,62 @@ export default {
     return {
       operand1: 0,
       operand2: 0,
-      result: 0
+      result: 0,
+      error: '',
+      num: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+      checkbox: false
     }
   },
   methods: {
-    divide(op1, op2) {
-      this.result = op1 / op2
+    calculate(operation){
+      switch (operation){
+        case'+': 
+          this.add()
+          break;
+        case'-': 
+          this.substract()
+          break;
+        case'/': 
+          this.divide()
+          break;
+        case'*': 
+          this.multiplay()
+          break;
+          case'%': 
+           this.integerDivision()
+           break;
+          case'**': 
+            this.exponentiation()
+            break;
+      }
+    },
+
+    add(){
+      this.result = this.operand1 + this.operand2
+    },
+    substract(){
+      this.result = this.operand1 - this.operand2
+    }, 
+    divide() {
+      if(this.operand2 === 0){
+        this.error = 'Делить на 0 нельзя!'
+      } else {
+        this.result = this.operand1 / this.operand2
+      }
     },
     multiplay(){
-      const {operand1, operand2} = this
-      this.result = operand1 * operand2
+      this.result = this.operand1 * this.operand2
+    },
+    integerDivision(){
+      this.result = this.operand1 % this.operand2
+    },
+    exponentiation(){
+      this.result = this.operand1 ** this.operand2
+    },
+    numKeyboard(){
+      if( checkbox === false ){
+        
+      }
     }
   }
 }
