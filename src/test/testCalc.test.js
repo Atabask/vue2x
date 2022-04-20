@@ -171,7 +171,9 @@ describe('Test for MyCalc', ()=>{
         // expect(wrapper.vm.operand1).toBe(1)
 
     })
-    
+
+    //-------------------------------------------------------------------------------
+
     // test("test del", ()=>{
     //     const wrapper = mount(MyCalc)
     //     const operand1 = wrapper.find("input[name=operand1]")
