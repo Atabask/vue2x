@@ -1,32 +1,35 @@
 <template>
   <div class="hello">
-    <input v-model.number="operand1" type="number">
-    <input v-model.number="operand2" type="number">
+    <input v-model.number="operand1" type="number" name="operand1">
+    <input v-model.number="operand2" type="number" name="operand2">
     = {{ result }}
     <div v-if="error">{{error}}</div>
     <div class="calc">
       <button v-for="operator in operators" 
       :key="operator" 
-      @click="calculate(operator)">
+      @click="calculate(operator)"
+      :name="operator">
         {{ operator }}
       </button>
     </div>
-    <input type="checkbox" name="checkbox" id="keyboardCheckbox" v-model="cheked" :key="keyboard">Отобразить Экранную клавиатуру 
-    <div class="nums" v-if="cheked === true">
+    <input type="checkbox" name="checkbox" id="keyboardCheckbox" v-model="checked" :key="keyboard">Отобразить Экранную клавиатуру 
+    <div class="nums" v-if="checked === true">
       <button v-for="num in nums" 
       :key="num"
       @click="setValueOperand(num)"
+      :name="num"
+      :id="num"
       >{{ num }}</button>
-      <button value="del" :key="del" @click="del()">&#9003;</button>
+      <button value="del" :key="del" @click="del()" name="del">&#9003;</button>
     </div>
-    <input type="radio" name="operandInput" v-model="activeInput" value="operand1">Операнд 1
-    <input type="radio" name="operandInput" v-model="activeInput" value="operand2">Операнд 2
+    <input type="radio" name="operandInput1" v-model="activeInput" value="operand1">Операнд 1
+    <input type="radio" name="operandInput2" v-model="activeInput" value="operand2">Операнд 2
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'MyCalc',
   props: {
     msg: {
       type: String,
@@ -40,8 +43,8 @@ export default {
       operand2: 0,
       result: 0,
       error: '',
-      nums: [ '1', '2', '3', '4', '5', '6', '7', '8', '9'],
-      cheked: false,
+      nums: [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+      checked: false,
       
 
     }
