@@ -143,13 +143,16 @@ describe('Test for MyCalc', ()=>{
             }
         }) 
 
-        
 
         const checkbox = wrapper.find("input[name=checkbox]")
         checkbox.trigger("click")
         checkbox.setChecked(true)
 
-        expect(wrapper.checkbox).toBe(true)
+
+        const numBtn = wrapper.find("div[name=nums]")
+        
+        expect(wrapper.vm.numBtn).toBe("display:block")
+    
 
         //---------------------------------------------------------------------
 

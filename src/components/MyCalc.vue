@@ -13,7 +13,7 @@
       </button>
     </div>
     <input type="checkbox" name="checkbox" id="keyboardCheckbox" v-model="checked" :key="keyboard">Отобразить Экранную клавиатуру 
-    <div class="nums" v-if="checked === true">
+    <div name="nums" class="nums" v-if="checked === true">
       <button v-for="num in nums" 
       :key="num"
       @click="setValueOperand(num)"
